@@ -1,0 +1,49 @@
+<div th:replace="layout/head"></div>
+
+<div th:replace="layout/header"></div>
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+	<div
+		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+		<h1 class="h2">Mahasiswa</h1>
+		<div class="btn-toolbar mb-2 mb-md-0">
+			<div class="btn-group mr-2">
+				<a class="btn btn-dark" th:href="@{/mahasiswa/new}">Tambah</a>
+				<button class="btn btn-sm btn-outline-secondary">Export</button>
+			</div>
+			<button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+				<span data-feather="calendar"></span> This week
+			</button>
+		</div> 
+	</div>
+	<div>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">NIM</th>
+					<th scope="col">Nama Lengkap</th>
+					<th scope="col">Angkatan</th>
+					<th scope="col" width="10"></th>
+					<th scope="col" width="10"></th>
+					<th scope="col" width="10"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="mahasiswa : ${listMahasiswa}">
+					<td th:text="${mahasiswa.id}" />
+					<td th:text="${mahasiswa.nim}" />
+					<td th:text="${mahasiswa.namaLengkap}" />
+					<td th:text="${mahasiswa.angkatan}" />
+					<td><a th:href="${'/mahasiswa/'+mahasiswa.id}"><i data-feather="eye"></i></a></td>
+					<td><a th:href="${'/mahasiswa/edit/'+mahasiswa.id}"><i data-feather="edit"></i></a></td>
+					<td><a th:href="${'/mahasiswa/delete/'+mahasiswa.id}"><i data-feather="trash-2"></i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a class="btn btn-dark" th:href="@{/mahasiswa/new}">Tambah</a>
+	</div>
+</main>
+<div th:replace="layout/footer"></div>
